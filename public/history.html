@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script>
+    let historyObj = window.history;
+    let originLength = historyObj.length;
+    window.onpushstate = function (event) {
+      console.log('自定义事件 onpushstate', event)
+      root.innerHTML = event && event.detail.path
+    }
+      // 由于popstate的监听不生效，重写pushState方法
+      ; (function (history) {
+        const originPushState = history.pushState;
+        history.pushState = function (data, title, path) {
+          console.log('重写后的pushState');
+          originPushState.apply(history, arguments);
+          if (typeof window.onpushstate === 'function') {
+            window.onpushstate(new CustomEvent('pushstate', ({ detail: { data, title, path } })))
+          }
+        }
+      })(historyObj);
+
+
+    setTimeout(() => {
+      historyObj.pushState({ page: 1 }, '', '/page1');
+      console.log('page1', historyObj.length - originLength);
+    }, 1000)
+
+    window.addEventListener('popstate', function (event) {
+      console.log('popstate', event)
+    })
+  </script>
+</body>
+
+</html>
