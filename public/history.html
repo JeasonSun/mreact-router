@@ -9,6 +9,9 @@
 </head>
 
 <body>
+  <p>WindowEventHandlers.onpopstate</p>
+  https://developer.mozilla.org/zh-CN/docs/Web/API/Window/popstate_event
+
   <div id="root"></div>
   <script>
     let historyObj = window.history;
@@ -29,15 +32,39 @@
         }
       })(historyObj);
 
-
-    setTimeout(() => {
-      historyObj.pushState({ page: 1 }, '', '/page1');
-      console.log('page1', historyObj.length - originLength);
-    }, 1000)
-
     window.addEventListener('popstate', function (event) {
       console.log('popstate', event)
     })
+
+    setTimeout(() => {
+      historyObj.pushState({ page: 1 }, '', '?page=1');
+      console.log('page1', historyObj.length - originLength);
+    }, 1000)
+    setTimeout(() => {
+      historyObj.pushState({ page: 2 }, '', '?page=2');
+      console.log('page2', historyObj.length - originLength);
+    }, 2000)
+    setTimeout(() => {
+      historyObj.pushState({ page: 3 }, '', '?page=3');
+      console.log('page3', historyObj.length - originLength);
+    }, 3000)
+
+    setTimeout(() => {
+      historyObj.back();
+      console.log('回退1', historyObj.length - originLength)
+    }, 4000)
+
+    setTimeout(() => {
+      historyObj.back();
+      console.log('回退2', historyObj.length - originLength)
+    }, 5000)
+
+    setTimeout(() => {
+      historyObj.go(1);
+      console.log('向前', historyObj.length - originLength)
+    }, 6000)
+
+
   </script>
 </body>
 

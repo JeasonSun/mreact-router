@@ -1,5 +1,5 @@
 import React from 'react'
-import { HashRouter as Router, Route } from './react-router-dom'
+import { BrowserRouter as Router, Route } from './react-router-dom'
 
 import Home from './components/Home'
 import User from './components/User'
@@ -9,7 +9,9 @@ export default function App () {
   return (
     <>
       <h1>react-router-dom:</h1>
-      <p> HashRouter, Router, Route, history 使用第三方</p>
+      <p> BrowserRouter, Router, Route</p>
+      <p> history 使用自己的 createBrowserHistory</p>
+
       <Router>
         <Route path='/' component={Home} exact />
         <Route path='/user' component={User} />
