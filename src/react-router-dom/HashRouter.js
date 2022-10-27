@@ -1,6 +1,6 @@
 import React from "react";
 import Router from "../react-router/Router";
-import { createHashHistory } from "history";
+import { createHashHistory } from "../history";
 
 class HashRouter extends React.Component {
   constructor(props) {

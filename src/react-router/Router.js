@@ -7,6 +7,7 @@ import RouterContext from "./RouterContext";
 class Router extends React.Component {
   constructor(props) {
     super(props);
+    console.log(this.props.history)
     this.state = {
       location: this.props.history.location,
     };
