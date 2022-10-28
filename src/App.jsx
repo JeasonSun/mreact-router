@@ -1,5 +1,5 @@
 import React from 'react'
-import { HashRouter as Router, Route } from './react-router-dom'
+import { HashRouter as Router, Route, Switch } from './react-router-dom'
 
 import Home from './components/Home'
 import User from './components/User'
@@ -14,10 +14,12 @@ export default function App () {
       <p> history 使用自己的 createBrowserHistory</p>
 
       <Router>
-        <Route path='/' component={Home} exact />
-        <Route path='/user' component={User} exact/>
-        <Route path='/profile' component={Profile} />
-        <Route path='/user/:id' component={UserDetail}/>
+        <Switch>
+          <Route path='/' component={Home} exact/>
+          <Route path='/user' component={User} exact/>
+          <Route path='/profile' component={Profile} />
+          <Route path='/user/:id' component={UserDetail} />
+        </Switch>
       </Router>
     </>
   )
