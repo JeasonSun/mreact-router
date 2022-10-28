@@ -4,6 +4,7 @@ import { HashRouter as Router, Route } from './react-router-dom'
 import Home from './components/Home'
 import User from './components/User'
 import Profile from './components/Profile'
+import UserDetail from './components/UserDetail'
 
 export default function App () {
   return (
@@ -14,8 +15,9 @@ export default function App () {
 
       <Router>
         <Route path='/' component={Home} exact />
-        <Route path='/user' component={User} />
+        <Route path='/user' component={User} exact/>
         <Route path='/profile' component={Profile} />
+        <Route path='/user/:id' component={UserDetail}/>
       </Router>
     </>
   )
