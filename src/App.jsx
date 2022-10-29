@@ -1,24 +1,29 @@
 import React from 'react'
-import { HashRouter as Router, Route, Switch } from './react-router-dom'
+import { HashRouter as Router, Link, Route, Switch } from './react-router-dom'
 
 import Home from './components/Home'
 import User from './components/User'
 import Profile from './components/Profile'
-import UserDetail from './components/UserDetail'
 
 export default function App () {
   return (
     <>
-      <h1>react-router-dom:</h1>
-      <p> BrowserRouter, Router, Route</p>
-      <p> history 使用自己的 createBrowserHistory</p>
-
       <Router>
+        <ul className='nav-container'>
+          <li>
+            <Link to='/'>首页</Link>
+          </li>
+          <li>
+            <Link to='/user'>用户管理</Link>
+          </li>
+          <li>
+            <Link to='/profile'>个人中心</Link>
+          </li>
+        </ul>
         <Switch>
-          <Route path='/' component={Home} exact/>
-          <Route path='/user' component={User} exact/>
+          <Route path='/' component={Home} exact />
+          <Route path='/user' component={User} exact />
           <Route path='/profile' component={Profile} />
-          <Route path='/user/:id' component={UserDetail} />
         </Switch>
       </Router>
     </>
