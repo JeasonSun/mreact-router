@@ -72,7 +72,7 @@ function createHashHistory() {
   // 主动触发一下跳转默认页面,往stack中加入一个记录
   if (window.location.hash) {
     action = "PUSH";
-    listen();
+    changeHash();
   } else {
     window.location.hash = "/";
   }
