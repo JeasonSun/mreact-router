@@ -7,14 +7,14 @@ import RouterContext from "./RouterContext";
 class Router extends React.Component {
   constructor(props) {
     super(props);
-    console.log(this.props.history)
+    console.log(this.props.history);
     this.state = {
       location: this.props.history.location,
     };
 
     // 监听路径变化，当路径变化的时候， 执行回调，传入最新的路径
     this.unlisten = props.history.listen((location) => {
-      console.log('路径变化')
+      console.log("路径变化");
       this.setState({ location });
     });
   }

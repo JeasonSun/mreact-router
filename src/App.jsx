@@ -3,50 +3,63 @@ import {
   HashRouter as Router,
   Route,
   Switch,
-  NavLink
+  Link,
+  useHistory,
+  useLocation,
+  useParams,
+  useRouteMatch
 } from './react-router-dom'
 
-import Home from './components/Home'
-import User from './components/User'
-import Profile from './components/Profile'
-import Protected from './components/Protected'
-import Login from './components/Login'
-import NavHeader from './components/NavHeader'
+function Home () {
+  return <div>Home</div>
+}
+
+function UserDetail () {
+  const history = useHistory()
+  const location = useLocation()
+  const params = useParams()
+  console.log('history', history)
+  console.log('location', location)
+  console.log('params', params)
+  return <div>UserDetail</div>
+}
+
+function Post () {
+  const match = useRouteMatch({
+    path: '/post/:id',
+    strict: true,
+    sensitive: true
+  })
+  console.log('match', match)
+  return <div>Post</div>
+}
 
 export default function App () {
   return (
     <>
       <Router>
-        <NavHeader title="跳转首页"/>
         <ul className='nav-container'>
           <li>
-            <NavLink
-              to='/'
-              className='nav'
-              style={{ fontWeight: 'bold' }}
-              activeClassName='active'
-              activeStyle={{ color: 'red' }}
-              exact
+            <Link to='/'>首页</Link>
+          </li>
+          <li>
+            <Link
+              to={{
+                pathname: '/user/detail/1',
+                state: { id: 1, name: 'mojie' }
+              }}
             >
-              首页
-            </NavLink>
+              用户详情
+            </Link>
           </li>
           <li>
-            <NavLink to='/user' activeStyle={{ color: 'red' }}>
-              用户管理
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to='/profile' activeStyle={{ color: 'red' }}>
-              个人中心
-            </NavLink>
+            <Link to='/post/1'>文章</Link>
           </li>
         </ul>
         <Switch>
           <Route path='/' component={Home} exact />
-          <Route path='/user' component={User} />
-          <Protected path='/profile' component={Profile} />
-          <Route path='/login' component={Login} />
+          <Route path='/user/detail/:id' component={UserDetail} />
+          <Route path='/post/:id' component={Post} />
         </Switch>
       </Router>
     </>

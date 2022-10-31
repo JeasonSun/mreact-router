@@ -3,3 +3,4 @@ export { default as BrowserRouter } from "./BrowserRouter";
 export { default as HashRouter } from "./HashRouter";
 export { default as Link } from "./Link";
 export { default as NavLink } from "./NavLink";
+export { useHistory, useLocation, useParams } from "../react-router";
