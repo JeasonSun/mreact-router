@@ -1,5 +1,10 @@
 import React from 'react'
-import { HashRouter as Router, Link, Route, Switch } from './react-router-dom'
+import {
+  HashRouter as Router,
+  Route,
+  Switch,
+  NavLink
+} from './react-router-dom'
 
 import Home from './components/Home'
 import User from './components/User'
@@ -13,13 +18,26 @@ export default function App () {
       <Router>
         <ul className='nav-container'>
           <li>
-            <Link to='/'>首页</Link>
+            <NavLink
+              to='/'
+              className='nav'
+              style={{ fontWeight: 'bold' }}
+              activeClassName='active'
+              activeStyle={{ color: 'red' }}
+              exact
+            >
+              首页
+            </NavLink>
           </li>
           <li>
-            <Link to='/user'>用户管理</Link>
+            <NavLink to='/user' activeStyle={{ color: 'red' }}>
+              用户管理
+            </NavLink>
           </li>
           <li>
-            <Link to='/profile'>个人中心</Link>
+            <NavLink to='/profile' activeStyle={{ color: 'red' }}>
+              个人中心
+            </NavLink>
           </li>
         </ul>
         <Switch>

@@ -24,11 +24,18 @@ class Route extends React.Component {
       } else if (render) {
         renderElement = render(routeProps);
       } else if (children) {
-        renderElement = render(routeProps);
+        renderElement = children(routeProps);
+      } else {
+        renderElement = null;
+      }
+    } else {
+      if (children) {
+        renderElement = children(routeProps);
       } else {
         renderElement = null;
       }
     }
+
     return renderElement;
   }
 }
