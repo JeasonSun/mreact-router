@@ -11,11 +11,13 @@ import User from './components/User'
 import Profile from './components/Profile'
 import Protected from './components/Protected'
 import Login from './components/Login'
+import NavHeader from './components/NavHeader'
 
 export default function App () {
   return (
     <>
       <Router>
+        <NavHeader title="跳转首页"/>
         <ul className='nav-container'>
           <li>
             <NavLink
